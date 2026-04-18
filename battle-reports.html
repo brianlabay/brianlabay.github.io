@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Battle Reports — Zero Hour</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../site.css">
+  <style>
+    /* Page-specific colour overrides */
+    .cat-hero-bg  { background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(192,57,43,0.12) 0%, transparent 70%); }
+    .cat-eyebrow  { color: #ff2d1a; }
+  </style>
+</head>
+<body>
+<div id="starfield"></div>
+
+<nav>
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-logo">ZH</a>
+    <ul class="nav-links">
+      <li class="nav-item active"><a href="../battle-reports/battle-reports.html">Battle Reports</a></li>
+      <li class="nav-item has-content"><a href="../army-lists/army-lists.html">Army Lists</a></li>
+      <li class="nav-item "><a href="../painting/painting.html">Painting</a></li>
+      <li class="nav-item "><a href="../meta/meta.html">Meta</a></li>
+      <li class="nav-item "><a href="../pages/about.html">About</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="cat-hero">
+  <div class="cat-hero-bg"></div>
+  <div class="cat-hero-inner">
+    <div class="breadcrumb">
+      <a href="../index.html">Home</a>
+      <span class="breadcrumb-sep">›</span>
+      <span>Battle Reports</span>
+    </div>
+    <p class="cat-eyebrow">// Galactic Front Dispatches //</p>
+    <h1 class="cat-title">Battle Reports</h1>
+    <p class="cat-sub">Turn-by-turn breakdowns from the table</p>
+    <div class="cat-divider"></div>
+  </div>
+</div>
+
+<div class="cat-content">
+  <div class="cat-content-inner">
+
+    <div class="section-header">
+      <span class="section-label">All Battle Reports</span>
+      <div class="section-line"></div>
+    </div>
+    <div class="posts-grid">
+      <a class="post-card pending" href="../pages/battle-report-pending.html">
+        <div class="lock-badge">ARTICLE PENDING</div>
+        <div class="card-thumb card-thumb-battle"><div class="card-thumb-grid"></div><span>🎲</span></div>
+        <div class="card-body">
+          <p class="card-cat cat-battle">// Battle Report</p>
+          <h3>Battle Report — Title TBC</h3>
+          <p>A full game write-up is in the works. Turn-by-turn breakdown, activation decisions, dice results, and post-game analysis.</p>
+          <div class="card-footer"><span>COMING SOON</span><span class="card-pending-label">article pending</span></div>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">ZERO HOUR</div>
+    <ul class="footer-links">
+      <li><a href="../battle-reports/battle-reports.html">Battle Reports</a></li>
+      <li><a href="../army-lists/army-lists.html">Army Lists</a></li>
+      <li><a href="../painting/painting.html">Painting</a></li>
+      <li><a href="../meta/meta.html">Meta</a></li>
+    </ul>
+    <p class="footer-copy">© 2026 · NOT AFFILIATED WITH FANTASY FLIGHT GAMES OR ATOMIC MASS GAMES</p>
+  </div>
+</footer>
+
+<script>
+  const sf = document.getElementById('starfield');
+  for (let i = 0; i < 140; i++) {
+    const s = document.createElement('div'); s.className='star';
+    const sz = Math.random()*2+0.4;
+    s.style.cssText=`width:${sz}px;height:${sz}px;left:${Math.random()*100}%;top:${Math.random()*100}%;--d:${(Math.random()*5+2).toFixed(1)}s;--delay:-${(Math.random()*8).toFixed(1)}s;--min:${(Math.random()*0.1).toFixed(2)};--max:${(Math.random()*0.5+0.2).toFixed(2)};`;
+    sf.appendChild(s);
+  }
+  const obs = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{ if(e.isIntersecting){e.target.style.opacity='1';e.target.style.transform='translateY(0)';} });
+  },{threshold:0.1});
+  document.querySelectorAll('.post-card').forEach(el=>{
+    el.style.opacity='0'; el.style.transform='translateY(20px)';
+    el.style.transition='opacity 0.6s ease, transform 0.6s ease';
+    obs.observe(el);
+  });
+</script>
+</body>
+</html>

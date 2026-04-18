@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How AMG's Legion 2.6 Update Is Shaking Up the Meta — Zero Hour</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../site.css">
+  <style>
+    .pending-eyebrow { color: #c9a84c; }
+  </style>
+</head>
+<body>
+<div id="starfield"></div>
+
+<nav>
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-logo">ZH</a>
+    <ul class="nav-links">
+      <li class="nav-item"><a href="../battle-reports/battle-reports.html">Battle Reports</a></li>
+      <li class="nav-item has-content"><a href="../army-lists/army-lists.html">Army Lists</a></li>
+      <li class="nav-item"><a href="../painting/painting.html">Painting</a></li>
+      <li class="nav-item"><a href="../meta/meta.html">Meta</a></li>
+      <li class="nav-item"><a href="../pages/about.html">About</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="pending-wrap">
+  <div class="pending-box">
+    <div class="pending-ring"><div class="pending-icon">⚡</div></div>
+    <p class="pending-eyebrow">// Meta Analysis //</p>
+    <h1 class="pending-title">How AMG's Legion 2.6 Update Is Shaking Up the Meta</h1>
+    <div class="pending-divider"></div>
+    <p class="pending-statement">AMG's Star Wars Legion 2.6 update dropped April 21, 2026<br>and changed the competitive landscape overnight.<br>A full breakdown of every major shift and what it means<br>for each faction is currently being written.</p>
+    <div class="pending-badge">// Article Pending — Check Back Soon //</div>
+    <br><br>
+    <a href="../index.html" class="back-btn"><span>← Return to Zero Hour</span></a>
+  </div>
+</div>
+
+<footer style="text-align:center;padding:2rem;border-top:1px solid rgba(201,168,76,0.1);font-family:'Share Tech Mono',monospace;font-size:0.6rem;letter-spacing:0.2em;color:var(--text-dim);">
+  © 2026 ZERO HOUR · NOT AFFILIATED WITH FANTASY FLIGHT GAMES OR ATOMIC MASS GAMES
+</footer>
+
+<script>
+  const sf = document.getElementById('starfield');
+  for (let i = 0; i < 140; i++) {
+    const s = document.createElement('div'); s.className='star';
+    const sz = Math.random()*2+0.4;
+    s.style.cssText=`width:${sz}px;height:${sz}px;left:${Math.random()*100}%;top:${Math.random()*100}%;--d:${(Math.random()*5+2).toFixed(1)}s;--delay:-${(Math.random()*8).toFixed(1)}s;--min:${(Math.random()*0.1).toFixed(2)};--max:${(Math.random()*0.5+0.2).toFixed(2)};`;
+    sf.appendChild(s);
+  }
+  const obs = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{ if(e.isIntersecting){e.target.style.opacity='1';e.target.style.transform='translateY(0)';} });
+  },{threshold:0.1});
+  document.querySelectorAll('.post-card').forEach(el=>{
+    el.style.opacity='0'; el.style.transform='translateY(20px)';
+    el.style.transition='opacity 0.6s ease, transform 0.6s ease';
+    obs.observe(el);
+  });
+</script>
+</body>
+</html>
