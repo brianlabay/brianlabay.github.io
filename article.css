@@ -1,0 +1,239 @@
+/*
+ * ZERO HOUR — Star Wars Legion Blog
+ * Shared Article Stylesheet
+ * Link this file in every article: <link rel="stylesheet" href="article.css">
+ * Also link Google Fonts in your <head>:
+ * <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+ */
+
+/* ============================================================
+   TOKENS & RESET
+============================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --gold: #c9a84c;
+  --gold-bright: #f0cc6e;
+  --red: #c0392b;
+  --red-glow: #ff2d1a;
+  --blue-glow: #29b6f6;
+  --green: #a8e063;
+  --dark: #060810;
+  --dark2: #0b0f1a;
+  --dark3: #111827;
+  --text: #ccc8be;
+  --text-dim: #7a7a8a;
+  --white: #f0ede6;
+}
+
+html { scroll-behavior: smooth; }
+body { font-family: 'Rajdhani', sans-serif; background: var(--dark); color: var(--text); overflow-x: hidden; }
+
+/* ============================================================
+   SCANLINES
+============================================================ */
+body::after {
+  content: '';
+  position: fixed; inset: 0; z-index: 1000; pointer-events: none;
+  background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.025) 2px, rgba(0,0,0,0.025) 4px);
+}
+
+/* ============================================================
+   STARFIELD
+============================================================ */
+#starfield { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+.star { position: absolute; border-radius: 50%; background: white; animation: twinkle var(--d, 3s) ease-in-out infinite var(--delay, 0s); }
+@keyframes twinkle { 0%,100%{opacity:var(--min,0.1)} 50%{opacity:var(--max,0.7)} }
+
+/* ============================================================
+   NAV
+============================================================ */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(6,8,16,0.95);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(201,168,76,0.15);
+  padding: 0 2rem;
+}
+.nav-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 56px; }
+.nav-logo { font-family: 'Orbitron', monospace; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; color: var(--gold); text-decoration: none; }
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a { font-family: 'Share Tech Mono', monospace; font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-dim); text-decoration: none; transition: color 0.2s; }
+.nav-links a:hover { color: var(--gold); }
+
+/* ============================================================
+   ARTICLE HERO
+============================================================ */
+.article-hero { position: relative; z-index: 10; padding: 5rem 2rem 3rem; max-width: 1100px; margin: 0 auto; border-bottom: 1px solid rgba(201,168,76,0.1); }
+
+.breadcrumb { font-family: 'Share Tech Mono', monospace; font-size: 0.6rem; letter-spacing: 0.3em; color: var(--text-dim); text-transform: uppercase; margin-bottom: 2rem; display: flex; align-items: center; gap: 0.75rem; }
+.breadcrumb a { color: var(--gold); text-decoration: none; }
+.breadcrumb-sep { color: var(--text-dim); }
+
+.article-category { font-family: 'Share Tech Mono', monospace; font-size: 0.65rem; letter-spacing: 0.35em; color: var(--blue-glow); text-transform: uppercase; margin-bottom: 1.25rem; }
+
+.article-title { font-family: 'Orbitron', monospace; font-size: clamp(1.6rem, 4vw, 3rem); font-weight: 900; line-height: 1.15; color: var(--white); max-width: 800px; margin-bottom: 2rem; opacity: 0; animation: fadeUp 0.7s ease forwards 0.1s; }
+
+.article-meta-row { display: flex; flex-wrap: wrap; align-items: center; gap: 1.5rem; margin-bottom: 2rem; opacity: 0; animation: fadeUp 0.7s ease forwards 0.25s; }
+.meta-chip { font-family: 'Share Tech Mono', monospace; font-size: 0.6rem; letter-spacing: 0.2em; color: var(--text-dim); text-transform: uppercase; display: flex; align-items: center; gap: 0.4rem; }
+.meta-chip-icon { color: var(--gold); }
+.meta-divider { width: 1px; height: 14px; background: rgba(201,168,76,0.2); }
+
+.article-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; opacity: 0; animation: fadeUp 0.7s ease forwards 0.4s; }
+.atag { font-family: 'Share Tech Mono', monospace; font-size: 0.6rem; letter-spacing: 0.15em; padding: 0.25rem 0.7rem; border: 1px solid rgba(201,168,76,0.25); color: var(--gold); text-transform: uppercase; }
+
+@keyframes fadeUp { from{opacity:0;transform:translateY(14px)} to{opacity:1;transform:translateY(0)} }
+
+/* ============================================================
+   HERO IMAGE
+============================================================ */
+.article-hero-image { position: relative; z-index: 10; width: 100%; max-height: 520px; overflow: hidden; border-bottom: 2px solid rgba(201,168,76,0.2); }
+.article-hero-image img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; display: block; filter: brightness(0.92) contrast(1.05); }
+.article-hero-image::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 120px; background: linear-gradient(to bottom, transparent, var(--dark)); pointer-events: none; }
+.image-credit { position: absolute; bottom: 0.5rem; right: 1rem; z-index: 2; font-family: 'Share Tech Mono', monospace; font-size: 0.5rem; letter-spacing: 0.15em; color: rgba(255,255,255,0.3); }
+
+/* ============================================================
+   ARTICLE LAYOUT
+============================================================ */
+.article-layout { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 280px; gap: 4rem; padding: 3rem 2rem 6rem; position: relative; z-index: 10; }
+.article-body { max-width: 720px; }
+
+/* ============================================================
+   BODY TYPOGRAPHY
+============================================================ */
+.article-lead { font-size: 1.15rem; line-height: 1.8; color: var(--text); padding: 1.5rem 1.5rem 1.5rem 2rem; border-left: 2px solid var(--gold); background: rgba(201,168,76,0.04); margin-bottom: 2.5rem; font-weight: 600; }
+.article-body p { font-size: 1rem; line-height: 1.85; color: var(--text); margin-bottom: 1.4rem; }
+
+/* Section headers */
+.article-body h2 { font-family: 'Orbitron', monospace; font-size: 1.1rem; font-weight: 700; color: var(--white); margin: 3rem 0 1.25rem; padding-bottom: 0.75rem; border-bottom: 1px solid rgba(201,168,76,0.15); display: flex; align-items: center; gap: 0.75rem; }
+.article-body h2::before { content: '//'; font-family: 'Share Tech Mono', monospace; font-size: 0.75rem; color: var(--gold); flex-shrink: 0; }
+
+/* Bullet lists */
+.article-body ul { margin: 1rem 0 1.5rem 0; list-style: none; }
+.article-body ul li { font-size: 1rem; line-height: 1.7; color: var(--text); padding: 0.4rem 0 0.4rem 1.5rem; position: relative; border-bottom: 1px solid rgba(255,255,255,0.04); }
+.article-body ul li::before { content: '◆'; position: absolute; left: 0; color: var(--gold); font-size: 0.5rem; top: 0.6rem; }
+
+/* ============================================================
+   CALLOUT BOXES
+   Usage: <div class="callout" data-label="KEY MECHANIC">
+          <div class="callout callout-warning" data-label="WARNING">
+          <div class="callout callout-tip" data-label="TIP">
+============================================================ */
+.callout { border: 1px solid rgba(201,168,76,0.2); background: var(--dark2); padding: 1.5rem; margin: 2rem 0; position: relative; }
+.callout::before { content: attr(data-label); position: absolute; top: -1px; left: 1.5rem; transform: translateY(-50%); font-family: 'Share Tech Mono', monospace; font-size: 0.55rem; letter-spacing: 0.3em; padding: 0.2rem 0.6rem; background: var(--gold); color: var(--dark); text-transform: uppercase; }
+.callout p { margin-bottom: 0; font-size: 0.95rem; color: var(--text-dim); }
+.callout strong { color: var(--white); }
+
+.callout-warning { border-color: rgba(255,45,26,0.3); }
+.callout-warning::before { background: var(--red-glow); color: var(--white); }
+
+.callout-tip { border-color: rgba(168,224,99,0.25); }
+.callout-tip::before { background: var(--green); color: var(--dark); }
+
+/* ============================================================
+   UNIT STAT BLOCK
+   Usage: copy the .stat-block HTML structure
+============================================================ */
+.stat-block { border: 1px solid rgba(201,168,76,0.2); background: var(--dark3); margin: 2rem 0; overflow: hidden; }
+.stat-block-header { background: rgba(201,168,76,0.08); padding: 0.75rem 1.25rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(201,168,76,0.15); }
+.stat-block-title { font-family: 'Orbitron', monospace; font-size: 0.8rem; font-weight: 700; color: var(--gold); }
+.stat-block-pts { font-family: 'Share Tech Mono', monospace; font-size: 0.65rem; color: var(--text-dim); }
+.stat-grid { display: grid; grid-template-columns: repeat(4, 1fr); border-bottom: 1px solid rgba(201,168,76,0.1); }
+.stat-cell { padding: 0.75rem 1rem; text-align: center; border-right: 1px solid rgba(201,168,76,0.1); }
+.stat-cell:last-child { border-right: none; }
+.stat-label { font-family: 'Share Tech Mono', monospace; font-size: 0.55rem; letter-spacing: 0.2em; color: var(--text-dim); text-transform: uppercase; margin-bottom: 0.3rem; }
+.stat-val { font-family: 'Orbitron', monospace; font-size: 1rem; font-weight: 700; color: var(--white); }
+.stat-body { padding: 1rem 1.25rem; font-size: 0.875rem; color: var(--text-dim); line-height: 1.6; }
+
+/* ============================================================
+   ARMY LIST CARD
+   Usage: <div class="list-card"><div class="list-card-title">...</div>
+          <div class="list-entry"><span class="list-entry-name">Unit</span><span class="list-entry-pts">CMD</span></div>
+============================================================ */
+.list-card { background: var(--dark3); border: 1px solid rgba(201,168,76,0.1); padding: 1rem; margin: 1.5rem 0; }
+.list-card-title { font-family: 'Orbitron', monospace; font-size: 0.7rem; font-weight: 700; color: var(--white); margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(201,168,76,0.15); }
+.list-entry { display: flex; justify-content: space-between; align-items: center; padding: 0.4rem 0; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 0.8rem; }
+.list-entry:last-child { border-bottom: none; }
+.list-entry-name { color: var(--text); }
+.list-entry-pts { font-family: 'Share Tech Mono', monospace; font-size: 0.65rem; color: var(--gold); }
+
+/* ============================================================
+   LIST IMAGE
+   Usage: <div class="list-image-wrap"><img src="..." alt="..."><div class="list-image-caption">...</div></div>
+============================================================ */
+.list-image-wrap { margin: 1.5rem 0; display: flex; flex-direction: column; align-items: center; gap: 0.75rem; }
+.list-image-wrap img { max-width: 420px; width: 100%; border: 1px solid rgba(201,168,76,0.15); background: var(--dark3); }
+.list-image-caption { font-family: 'Share Tech Mono', monospace; font-size: 0.58rem; letter-spacing: 0.2em; color: var(--text-dim); text-align: center; text-transform: uppercase; }
+
+/* ============================================================
+   KEY POINTS (numbered)
+   Usage: <div class="key-point"><div class="key-num">01</div><div class="key-text">...</div></div>
+============================================================ */
+.key-point { display: flex; gap: 1rem; padding: 1rem 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+.key-point:last-child { border-bottom: none; }
+.key-num { font-family: 'Orbitron', monospace; font-size: 1.5rem; font-weight: 900; color: rgba(201,168,76,0.2); flex-shrink: 0; width: 2rem; line-height: 1; }
+.key-text { font-size: 0.95rem; line-height: 1.7; color: var(--text); }
+.key-text strong { color: var(--white); }
+
+/* ============================================================
+   SECTION DIVIDER
+   Usage: <div class="art-divider"><div class="art-divider-line"></div><div class="art-divider-icon">◆ ◆ ◆</div><div class="art-divider-line"></div></div>
+============================================================ */
+.art-divider { display: flex; align-items: center; gap: 1rem; margin: 3rem 0; }
+.art-divider-line { flex: 1; height: 1px; background: rgba(201,168,76,0.12); }
+.art-divider-icon { color: var(--gold); font-size: 0.7rem; letter-spacing: 0.3em; font-family: 'Share Tech Mono', monospace; }
+
+/* ============================================================
+   VERDICT / CONCLUSION BOX
+   Usage: <div class="verdict"><div class="verdict-label">// Final Thought</div><p>...</p></div>
+============================================================ */
+.verdict { border: 1px solid rgba(201,168,76,0.3); background: linear-gradient(135deg, rgba(201,168,76,0.06) 0%, transparent 60%); padding: 2rem; margin-top: 3rem; position: relative; overflow: hidden; }
+.verdict::after { content: 'VERDICT'; position: absolute; right: -1rem; top: 50%; transform: translateY(-50%) rotate(90deg); font-family: 'Orbitron', monospace; font-size: 4rem; font-weight: 900; color: rgba(201,168,76,0.04); letter-spacing: 0.2em; white-space: nowrap; }
+.verdict-label { font-family: 'Share Tech Mono', monospace; font-size: 0.6rem; letter-spacing: 0.4em; color: var(--gold); text-transform: uppercase; margin-bottom: 1rem; }
+.verdict p { font-size: 1rem; line-height: 1.8; color: var(--text-dim); }
+.verdict p strong { color: var(--white); }
+
+/* ============================================================
+   SIDEBAR
+============================================================ */
+.article-sidebar { padding-top: 0.5rem; }
+.sidebar-widget { border: 1px solid rgba(201,168,76,0.12); background: var(--dark2); padding: 1.25rem; margin-bottom: 1.5rem; position: sticky; top: 80px; }
+.widget-label { font-family: 'Share Tech Mono', monospace; font-size: 0.6rem; letter-spacing: 0.35em; color: var(--gold); text-transform: uppercase; margin-bottom: 1.25rem; padding-bottom: 0.75rem; border-bottom: 1px solid rgba(201,168,76,0.12); }
+
+/* Table of Contents */
+.toc-list { list-style: none; }
+.toc-item { padding: 0.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.04); }
+.toc-item:last-child { border-bottom: none; }
+.toc-item a { font-family: 'Rajdhani', sans-serif; font-size: 0.85rem; font-weight: 600; color: var(--text-dim); text-decoration: none; transition: color 0.2s; display: flex; align-items: flex-start; gap: 0.5rem; }
+.toc-item a::before { content: '→'; color: var(--gold); font-size: 0.7rem; flex-shrink: 0; margin-top: 2px; opacity: 0; transition: opacity 0.2s; }
+.toc-item a:hover { color: var(--white); }
+.toc-item a:hover::before { opacity: 1; }
+
+/* Share buttons */
+.share-row { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+.share-btn { font-family: 'Share Tech Mono', monospace; font-size: 0.6rem; letter-spacing: 0.15em; padding: 0.4rem 0.9rem; border: 1px solid rgba(201,168,76,0.2); color: var(--text-dim); cursor: pointer; background: transparent; text-transform: uppercase; transition: all 0.2s; }
+.share-btn:hover { border-color: var(--gold); color: var(--gold); }
+
+/* Related posts */
+.related-post { padding: 0.75rem 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+.related-post:last-child { border-bottom: none; }
+.related-cat { font-family: 'Share Tech Mono', monospace; font-size: 0.55rem; letter-spacing: 0.2em; color: var(--blue-glow); text-transform: uppercase; margin-bottom: 0.3rem; }
+.related-title { font-size: 0.85rem; font-weight: 600; color: var(--text-dim); line-height: 1.4; transition: color 0.2s; }
+.related-post:hover .related-title { color: var(--white); }
+
+/* ============================================================
+   FOOTER
+============================================================ */
+footer { position: relative; z-index: 10; padding: 2.5rem 2rem; border-top: 1px solid rgba(201,168,76,0.1); }
+.footer-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+.footer-logo { font-family: 'Orbitron', monospace; font-size: 0.9rem; font-weight: 700; color: var(--gold); }
+.footer-copy { font-family: 'Share Tech Mono', monospace; font-size: 0.6rem; letter-spacing: 0.2em; color: var(--text-dim); }
+
+/* ============================================================
+   RESPONSIVE
+============================================================ */
+@media (max-width: 860px) {
+  .article-layout { grid-template-columns: 1fr; }
+  .article-sidebar { display: none; }
+  .stat-grid { grid-template-columns: repeat(2, 1fr); }
+}
