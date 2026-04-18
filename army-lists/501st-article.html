@@ -273,9 +273,9 @@
     <div class="sidebar-widget">
       <div class="widget-label">Share This Post</div>
       <div class="share-row">
-        <button class="share-btn">Twitter</button>
-        <button class="share-btn">Reddit</button>
-        <button class="share-btn">Copy Link</button>
+        <button class="share-btn" id="share-x">𝕏</button>
+        <button class="share-btn" id="share-facebook">Facebook</button>
+        <button class="share-btn" id="share-copy">Copy Link</button>
       </div>
     </div>
 
@@ -335,6 +335,26 @@
     el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
     obs.observe(el);
   });
+  // Share buttons
+  const pageUrl = encodeURIComponent(window.location.href);
+  const pageTitle = encodeURIComponent(document.title);
+
+  document.getElementById('share-x').addEventListener('click', () => {
+    window.open(`https://twitter.com/intent/tweet?url=${pageUrl}&text=${pageTitle}`, '_blank');
+  });
+
+  document.getElementById('share-facebook').addEventListener('click', () => {
+    window.open(`https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`, '_blank');
+  });
+
+  document.getElementById('share-copy').addEventListener('click', () => {
+    navigator.clipboard.writeText(window.location.href).then(() => {
+      const btn = document.getElementById('share-copy');
+      btn.textContent = 'Copied!';
+      setTimeout(() => { btn.textContent = 'Copy Link'; }, 2000);
+    });
+  });
+
   const sections = document.querySelectorAll('[id]');
   const tocLinks = document.querySelectorAll('.toc-item a');
   window.addEventListener('scroll', () => {
